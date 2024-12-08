@@ -1,5 +1,5 @@
 import React from "react";
-import logoo from "../assets/Images/logo.svg";
+import logo from "../assets/Images/logo.svg";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const Navbar = () => {
 	return (
 		<div className="flex items-center justify-between mx-auto max-w-7xl h-16 ">
 			<div className="navbar-logo">
-				<img src={logoo} alt=" " className="h-10" />
+				<img src={logo} alt=" " className="h-10" />
 			</div>
 			<div className="flex items-center gap-12">
 				<Link>Home</Link>

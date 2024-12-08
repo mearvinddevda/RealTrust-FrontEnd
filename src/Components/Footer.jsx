@@ -2,7 +2,7 @@ import React from "react";
 import bgImage from "../assets/Images/Rectangle.svg";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-// import logo from "../assets/Images/logo.svg";
+import logo from "../assets/Images/logo.svg";
 // // import facebok from "../assets/Icons/frame.svg";
 // import instagram from "../assets/Icons/Group.svg";
 // import linkedin from "../assets/Icons/Linkedin.svg";
