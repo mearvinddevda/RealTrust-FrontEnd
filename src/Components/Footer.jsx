@@ -2,16 +2,16 @@ import React from "react";
 import bgImage from "../assets/Images/Rectangle.svg";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-import logo from "../assets/Images/logo.svg";
-import facebok from "../assets/Icons/frame.svg";
-import instagram from "../assets/Icons/Group.svg";
-import linkedin from "../assets/Icons/Linkedin.svg";
+// import logo from "../assets/Images/logo.svg";
+// // import facebok from "../assets/Icons/frame.svg";
+// import instagram from "../assets/Icons/Group.svg";
+// import linkedin from "../assets/Icons/Linkedin.svg";
 
 
 
 
 const Footer = () => {
-    
+
 	return (
 		<div className="text-center text-lg text-bold">
 			<div
@@ -58,10 +58,10 @@ const Footer = () => {
                     <img src={logo} alt="" className="h-28 w-28 items-center" />
                 </div>
                 <div className=" flex justify-around items-center gap-3">
-                    <Link><img src={facebok} alt="" className="bg-white rounded-full h-8 p-1" /></Link>
-                    <Link><img src={instagram} alt="" className="bg-white rounded-full h-8 p-1" /></Link>
-                    <Link><img src={linkedin} alt="" className="bg-white rounded-full h-8 p-1" /></Link>
-                    <Link><img src={facebok} alt="" className="bg-white rounded-full h-8 p-1" /></Link>
+                    {/* <Link><img src={facebok} alt="" className="bg-white rounded-full h-8 p-1" /></Link> */}
+                    {/* <Link><img src={instagram} alt="" className="bg-white rounded-full h-8 p-1" /></Link> */}
+                    {/* <Link><img src={linkedin} alt="" className="bg-white rounded-full h-8 p-1" /></Link> */}
+                    {/* <Link><img src={facebok} alt="" className="bg-white rounded-full h-8 p-1" /></Link> */}
                 </div>
             </div>
 		</div>
