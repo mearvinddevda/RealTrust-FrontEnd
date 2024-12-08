@@ -6,12 +6,12 @@ import logo from "../assets/Images/logo.svg";
 import facebok from "../assets/Icons/frame.svg";
 import instagram from "../assets/Icons/Group.svg";
 import linkedin from "../assets/Icons/Linkedin.svg";
-// import facebok from "../assets/Icons/frame.svg";
 
 
 
 
 const Footer = () => {
+    
 	return (
 		<div className="text-center text-lg text-bold">
 			<div
