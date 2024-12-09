@@ -9,9 +9,12 @@ import linkedin from "../assets/Icons/Linkedin.svg";
 import { LOCAL_SUB_URL, SUBSCRIBER_URL } from "./api.js";
 import axios from "axios";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 const Footer = () => {
 	const [email, setEmail] = useState("");
+
+	const [loading , setLoading] =useState(false);
 
 	const onChangeHandler = (e) => {
 		setEmail(e.target.value );
@@ -23,7 +26,8 @@ const Footer = () => {
 		
 		console.log([...formDataa]);
         try {
-            const res = await axios.post(`${SUBSCRIBER_URL}/subscribe/newsletter` , formDataa,{
+			setLoading(true);
+            const res = await axios.post(`${LOCAL_SUB_URL}/subscribe/newsletter` , formDataa,{
 
                 headers: {
                     'Content-Type': "multipart/form-data",
@@ -40,6 +44,9 @@ const Footer = () => {
 			toast.error(error.message);
             console.log(error);
         }
+		finally{
+			setLoading(false);
+		  }
 	};
 
 	return (
@@ -82,14 +89,23 @@ const Footer = () => {
 							onChange={onChangeHandler}
 							placeholder="Enter Email Address"
 						/>
-
-						<Button
+						{loading ? (
+            <Button className="w-full my-4">
+              {" "}
+              <Loader2 className="ar-2 h-4 w-4 animate-spin" />
+              Please Wait
+            </Button>
+          ) : (
+            <Button
 							onClick={onSubmitHandler}
 							type="submit"
 							className="text-blue-500 border-none bg-white font"
 						>
 							Subscribe
 						</Button>
+          )}
+
+						
 					</div>
 				</div>
 			</div>
