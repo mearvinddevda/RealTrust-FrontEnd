@@ -1,18 +1,48 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
+import axios from "axios";
 // import imgg  from ".../assets/Images/pexels-brett-sayles-2881232.svg"
 // import imgg from "src/assets/Images/pexels-brett-sayles-2881232.svg"
 
 const ClientDetails = () => {
-    const [input , setInput] =useState({
-        name :"",
-        description:"",
-        designation:""
-        
-    })
-    const onChangeHandler =(e)=>{
-        setInput({...input ,[e.target.name]:e.target.value})
-    }
+	const [input, setInput] = useState({
+		name: "",
+		description: "",
+		designation: "",
+		file: "",
+	});
+	const onChangeHandler = (e) => {
+		setInput({ ...input, [e.target.name]: e.target.value });
+	};
+	const onFileChange = (e) => {
+		setInput({ ...input, file: e.target.files?.[0] });
+	};
+	const onSubmitHandler = async (e) => {
+		e.preventDefault();
+		const formData = new FormData();
+		formData.append("name", input.fullname);
+		formData.append("designation", input.email);
+		formData.append("description", input.phoneNumber);
+		if (input.file) {
+			formData.append("file", input.file);
+		}
+		try {
+			const { name, description, designation, file } = input;
+			const res =await axios.post(`${USER_API_END_POINT}/register`, formData, {
+				headers: {
+				  'Content-Type': "multipart/form-data",
+				},
+				withCredentials: true,
+			  });
+			  console.log(res);
+			  if (res.data.success) {
+				// toast.success(res.data.message);
+				console.log(res.data.message);
+			  }
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<div>
 			<div className="text-center">
@@ -33,16 +63,20 @@ const ClientDetails = () => {
 
 			<div className="form text-left ">
 				<form
+					onSubmit={onSubmitHandler}
 					action=""
 					className="w-96 h-96 bg-slate-500 flex flex-col gap-4 p-6 m-auto"
 				>
-                    <h1 className=" text-lg font-bold text-sky-400 text-center">
-					Creating Users
-				</h1>
+					<h1 className=" text-lg font-bold text-sky-400 text-center">
+						Creating Users
+					</h1>
 					<div className="field">
 						<input
+							onChange={onChangeHandler}
 							type="text"
-                            name
+							name="name"
+							value={input.name}
+
 							placeholder="Name"
 							className="placeholder-white bg-slate-500 border-2 border-black pl-3 rounded-sm"
 						/>
@@ -50,7 +84,10 @@ const ClientDetails = () => {
 					<div className="field">
 						<input
 							type="text"
-                            onChange={onChangeHandler}
+							name="description"
+							value={input.description}
+							
+							onChange={onChangeHandler}
 							placeholder="Description"
 							className="placeholder-white bg-slate-500 border-2 border-black pl-3 rounded-sm"
 						/>
@@ -58,6 +95,9 @@ const ClientDetails = () => {
 					<div className="field">
 						<input
 							type="text"
+							name="designation"
+							value={input.designation}
+							onChange={onChangeHandler}
 							placeholder="Designation"
 							className="placeholder-white bg-slate-500 border-2 border-black pl-3 rounded-sm"
 						/>
@@ -67,10 +107,15 @@ const ClientDetails = () => {
 							Enter Profile Image
 						</label>{" "}
 						<br />
-						<input type="file" />
+						<input type="file" name="file" accept="image/*" onClick={onFileChange} />
 					</div>
-                    <div className="field flex justify-center  ">
-						<Button type="submit" className="bg-cyan-600 border-black border-2 " >Submit</Button>
+					<div className="field flex justify-center  ">
+						<Button
+							type="submit"
+							className="bg-cyan-600 border-black border-2 "
+						>
+							Submit
+						</Button>
 					</div>
 				</form>
 			</div>
