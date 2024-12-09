@@ -23,7 +23,7 @@ const Footer = () => {
 		
 		console.log([...formDataa]);
         try {
-            const res = await axios.post(`${LOCAL_SUB_URL}/subscribe/newsletter` , formDataa,{
+            const res = await axios.post(`${SUBSCRIBER_URL}/subscribe/newsletter` , formDataa,{
 
                 headers: {
                     'Content-Type': "multipart/form-data",
