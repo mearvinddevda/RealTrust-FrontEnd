@@ -8,27 +8,22 @@ import instagram from "../assets/Icons/Group.svg";
 import linkedin from "../assets/Icons/Linkedin.svg";
 import { LOCAL_SUB_URL, SUBSCRIBER_URL } from "./api.js";
 import axios from "axios";
+import { toast } from "sonner";
 
 const Footer = () => {
 	const [email, setEmail] = useState("");
 
 	const onChangeHandler = (e) => {
-		console.log(email);
 		setEmail(e.target.value );
 	};
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
-        console.log(email);
 		const formDataa = new FormData();
-        console.log(formDataa);
         formDataa.append('email',email);
-        // formDataa.append('emaill',"affff");
-        // for (let [key, value] of formDataa.entries()) {
-        //     console.log(key + ": " + value);
-        // }
-        // console.log(formDataa.entries());
+		
+		console.log([...formDataa]);
         try {
-            const res = await axios.post(`${LOCAL_SUB_URL}/subscribe/newsletter` , formDataa.entries(),{
+            const res = await axios.post(`${LOCAL_SUB_URL}/subscribe/newsletter` , formDataa,{
 
                 headers: {
                     'Content-Type': "multipart/form-data",
@@ -36,12 +31,13 @@ const Footer = () => {
                 withCredentials:true,
             });
             console.log(res);
-			// if (res.data.success) {
-			// 	// toast.success(res.data.message);
-			// 	console.log(res.data.message);
-			// }
+			if (res.data.success) {
+				toast.success(res.data.message);
+				console.log(res.data.message);
+			}
             
         } catch (error) {
+			toast.error(error.message);
             console.log(error);
         }
 	};
