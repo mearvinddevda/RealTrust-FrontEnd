@@ -1,8 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import HeroImag from "../assets/Images/young-couple-examining-blueprints-with-real-estate-agent-while-buying-new-home 1.svg";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
+import { LOCAL_SUB_URL, SUBSCRIBER_URL } from "./api";
+import axios from "axios";
 
 const HeroSection = () => {
+	const [input, setInput] = useState({
+		email:"",
+		fullName:"",
+		mobile:"",
+		city:"",
+
+	});
+
+	const [loading , setLoading] =useState(false);
+
+	const onChangeHandler = (e) => {
+		setInput({ ...input, [e.target.name]: e.target.value });
+	};
+	const onSubmitHandler = async (e) => {
+		e.preventDefault();
+		const {email ,fullName ,mobile ,city} = input
+		console.log({email ,fullName ,mobile ,city});
+		
+		const formDataa = new FormData();
+        formDataa.append('email',input.email);
+        formDataa.append('fullName',input.fullName);
+        formDataa.append('mobile',input.mobile);
+        formDataa.append('city',input.city);
+		
+		console.log([...formDataa]);
+        try {
+			setLoading(true);
+            const res = await axios.post(`${SUBSCRIBER_URL}/create` , formDataa,{
+
+                headers: {
+                    'Content-Type': "multipart/form-data",
+                  },
+                withCredentials:true,
+            });
+            console.log(res);
+			if (res.data.success) {
+				toast.success(res.data.message);
+				console.log(res.data.message);
+			}
+            
+        } catch (error) {
+			toast.error(error.message);
+            console.log(error);
+        }
+		finally{
+			setLoading(false);
+		  }
+	};
 	return (
 		<div
 			className="flex w-full h-max items-center justify-between gap-12"
@@ -21,25 +72,38 @@ const HeroSection = () => {
 				</h1>
 				<input
 					type="text"
+					name="fullName"
 					className="bg-cyan-600 pl-5 py-3 border-1  placeholder-white rounded-lg"
 					placeholder="FullName"
+					onChange={onChangeHandler}
 				/>
 				<input
 					type="text"
+					name="email"
+					onChange={onChangeHandler}
+
 					className="bg-cyan-600 pl-5  py-3 placeholder-white rounded-lg"
 					placeholder="Email Address"
 				/>
 				<input
 					type="text"
+					name="mobile"
+					onChange={onChangeHandler}
+
 					className="bg-cyan-600 pl-5  py-3 placeholder-white rounded-lg"
 					placeholder="Phone Number"
 				/>
 				<input
 					type="text"
+					name="city"
+					onChange={onChangeHandler}
+
 					className="bg-cyan-600 pl-5  py-3 placeholder-white rounded-lg"
 					placeholder="City"
 				/>
-				<Button className="bg-orange-600 h-10 w-fit ">
+				<Button 
+				onClick={onSubmitHandler}
+				className="bg-orange-600 h-10 w-fit ">
 					Get Quick Care
 				</Button>
 			</div>
