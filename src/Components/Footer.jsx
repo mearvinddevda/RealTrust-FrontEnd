@@ -27,7 +27,7 @@ const Footer = () => {
 		console.log([...formDataa]);
         try {
 			setLoading(true);
-            const res = await axios.post(`${SUBSCRIBER_URL}/subscribe/newsletter` , formDataa,{
+            const res = await axios.post(`${SUBSCRIBER_URL}/newsletter` , formDataa,{
 
                 headers: {
                     'Content-Type': "multipart/form-data",
