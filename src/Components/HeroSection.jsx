@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import HeroImag from "../assets/Images/young-couple-examining-blueprints-with-real-estate-agent-while-buying-new-home 1.svg";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { LOCAL_SUB_URL, SUBSCRIBER_URL } from "./api";
+import { FORM_URL, LOCAL_SUB_URL } from "./api.jsx";
 import axios from "axios";
 
 const HeroSection = () => {
@@ -33,7 +33,7 @@ const HeroSection = () => {
 		console.log([...formDataa]);
         try {
 			setLoading(true);
-            const res = await axios.post(`${SUBSCRIBER_URL}/create` , formDataa,{
+            const res = await axios.post(`${FORM_URL}/create` , formDataa,{
 
                 headers: {
                     'Content-Type': "multipart/form-data",

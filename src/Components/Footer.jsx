@@ -6,7 +6,7 @@ import logo from "../assets/Images/logo.svg";
 // // import facebok from "../assets/Icons/frame.svg";
 import instagram from "../assets/Icons/Group.svg";
 import linkedin from "../assets/Icons/Linkedin.svg";
-import { LOCAL_SUB_URL, SUBSCRIBER_URL } from "./api.js";
+import { LOCAL_SUB_URL, SUBSCRIBER_URL } from "./api.jsx";
 import axios from "axios";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
