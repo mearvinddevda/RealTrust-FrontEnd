@@ -45,27 +45,13 @@ const ClientDetails = () => {
 	};
 	return (
 		<div>
-			<div className="text-center">
-				<h1 className=" text-lg font-bold text-sky-400">
-					Client Details
-				</h1>
-				<div className="cards  max-w-56 min-w-64 max-h-fit bg-white pb-3 rounded-xl grid">
-					<img src="" alt="" className="rounded-xl" />
-					<h1 className="px-6 text-xl font-bold text-sky-400">
-						Client Name
-					</h1>
-					<p className="px-6">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					</p>
-					<p>Designation</p>
-				</div>
-			</div>
+			
 
-			<div className="form text-left ">
+			<div className="form text-left my-10  ">
 				<form
 					onSubmit={onSubmitHandler}
 					action=""
-					className="w-96 h-96 bg-slate-500 flex flex-col gap-4 p-6 m-auto"
+					className="w-96 h-96 bg-slate-500 rounded-sm flex flex-col gap-4 p-6 m-auto"
 				>
 					<h1 className=" text-lg font-bold text-sky-400 text-center">
 						Creating Users
