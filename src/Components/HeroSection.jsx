@@ -50,6 +50,7 @@ const HeroSection = () => {
             console.log(error);
         }
 		finally{
+			setInput({ ...input, [e.target.name]: "" });
 			setLoading(false);
 		  }
 	};
@@ -100,11 +101,7 @@ const HeroSection = () => {
 					className="bg-cyan-600 pl-5  py-3 placeholder-white rounded-lg"
 					placeholder="City"
 				/>
-				{/* <Button 
-				onClick={onSubmitHandler}
-				className="bg-orange-600 h-10 w-fit ">
-					Get Quick Care
-				</Button> */}
+				
 				{loading ? (
             <Button className="w-full my-4">
               {" "}
