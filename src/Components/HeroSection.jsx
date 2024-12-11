@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { toast } from "sonner";
 import { FORM_URL, LOCAL_SUB_URL } from "./api.jsx";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 
 const HeroSection = () => {
 	const [input, setInput] = useState({
@@ -99,11 +100,24 @@ const HeroSection = () => {
 					className="bg-cyan-600 pl-5  py-3 placeholder-white rounded-lg"
 					placeholder="City"
 				/>
-				<Button 
+				{/* <Button 
+				onClick={onSubmitHandler}
+				className="bg-orange-600 h-10 w-fit ">
+					Get Quick Care
+				</Button> */}
+				{loading ? (
+            <Button className="w-full my-4">
+              {" "}
+              <Loader2 className="ar-2 h-4 w-4 animate-spin" />
+              Please Wait
+            </Button>
+          ) : (
+            <Button 
 				onClick={onSubmitHandler}
 				className="bg-orange-600 h-10 w-fit ">
 					Get Quick Care
 				</Button>
+          )}
 			</div>
 		</div>
 	);
