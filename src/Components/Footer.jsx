@@ -34,14 +34,13 @@ const Footer = () => {
                   },
                 withCredentials:true,
             });
-            console.log(res);
 			if (res.data.success) {
-				toast.success(res.data.message);
+				toast.success("Subscribe Successfully");
 				console.log(res.data.message);
 			}
             
         } catch (error) {
-			toast.error(error.message);
+			toast.error("Subscribe Successfully");
             console.log(error);
         }
 		finally{

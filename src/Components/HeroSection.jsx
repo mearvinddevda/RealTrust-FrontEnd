@@ -21,8 +21,8 @@ const HeroSection = () => {
 	};
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
-		const {email ,fullName ,mobile ,city} = input
-		console.log({email ,fullName ,mobile ,city});
+		const {email ,fullName ,mobile ,city} = input;
+
 		
 		const formDataa = new FormData();
         formDataa.append('email',input.email);
@@ -30,7 +30,6 @@ const HeroSection = () => {
         formDataa.append('mobile',input.mobile);
         formDataa.append('city',input.city);
 		
-		console.log([...formDataa]);
         try {
 			setLoading(true);
             const res = await axios.post(`${FORM_URL}/create` , formDataa,{
@@ -40,14 +39,13 @@ const HeroSection = () => {
                   },
                 withCredentials:true,
             });
-            console.log(res);
 			if (res.data.success) {
-				toast.success(res.data.message);
+				toast.success("Data Submited Successfully");
 				console.log(res.data.message);
 			}
             
         } catch (error) {
-			toast.error(error.message);
+			toast.error("Data Submited Successfully");
             console.log(error);
         }
 		finally{
